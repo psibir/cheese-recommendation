@@ -2,6 +2,8 @@
 
 A cheese recommendation system
 
+![](https://github.com/psibir/demonstrations/blob/main/cheese-recommendation-demo.gif?raw=true)
+
 ## Description
 
 This Python script recommends cheeses based on user input and uses TF-IDF vectorization and cosine similarity to find similar cheeses. The program then returns the top five recommendations, excluding any cheeses with qualities specified by the user to be excluded.
