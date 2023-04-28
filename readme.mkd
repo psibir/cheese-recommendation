@@ -2,7 +2,7 @@
 
 A cheese recommendation system
 
-![](https://github.com/psibir/demonstrations/blob/main/cheese-recommendation-demo.gif?raw=true)
+![](https://github.com/psibir/demonstrations/blob/main/cheese-recommendation-demo2.gif?raw=true)
 
 ## Description
 
