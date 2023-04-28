@@ -38,7 +38,7 @@ if __name__ == '__main__':
     if not user_input and not exclude_words:
         print("Here are some random cheeses:")
         recommendations = recommender.get_recommendations()
-        print(tabulate(recommendations[['cheese', 'origin', 'texture', 'flavor', 'aroma']], headers='keys', tablefmt='psql'))
+        print(tabulate(recommendations[['cheese', 'origin', 'texture', 'flavor', 'aroma']], headers='keys', tablefmt='psql', showindex=False))
     else:
         while True:
             recommendations = recommender.get_recommendations(user_input=user_input, num_recommendations=num_recommendations, start_index=start_index, exclude_words=exclude_words)
@@ -46,7 +46,7 @@ if __name__ == '__main__':
             if recommendations.empty:
                 print("No more recommendations.")
                 break
-            print(tabulate(recommendations[['cheese', 'origin', 'texture', 'flavor', 'aroma']], headers='keys', tablefmt='psql'))
+            print(tabulate(recommendations[['cheese', 'origin', 'texture', 'flavor', 'aroma']], headers='keys', tablefmt='psql', showindex=False))
             more_info = input('Would you like more information on any of these cheeses? (y/n) ')
             if more_info.lower() == 'y':
                 for index, row in recommendations.iterrows():
