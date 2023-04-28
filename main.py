@@ -20,6 +20,7 @@ class CheeseRecommender:
             sim_scores = cosine_similarity(user_vector, cheese_matrix).flatten()
             sim_indices = sim_scores.argsort()[::-1][start_index:num_recommendations+start_index]
         recommendations = self.df.iloc[sim_indices][['cheese', 'milk', 'origin', 'region', 'kind', 'color', 'texture', 'flavor', 'aroma', 'description', 'producer']]
+        recommendations['origin'] = recommendations['origin'].str.split(',').str[0] # only select the first item in the "origin" column
         if exclude_words:
             for word in exclude_words:
                 recommendations = recommendations[~recommendations['description'].str.contains(word, case=False)]
