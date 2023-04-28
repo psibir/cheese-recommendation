@@ -1,0 +1,66 @@
+# cheese-recommendation
+
+A cheese recommendation system
+
+## Description
+
+This Python script recommends cheeses based on user input and uses TF-IDF vectorization and cosine similarity to find similar cheeses. The program then returns the top five recommendations, excluding any cheeses with qualities specified by the user to be excluded.
+
+## Business Use Case
+
+This project could be useful for a cheese retailer or distributor to provide personalized recommendations to their customers. By asking customers about their preferences and excluding any qualities they do not like, the retailer can provide a curated list of cheeses that are more likely to be appealing to the customer. This could increase customer satisfaction and potentially lead to higher sales.
+
+## Technical Explanation
+
+The code is implementing a cheese recommendation system using the TF-IDF algorithm and cosine similarity.
+
+The `CheeseRecommender` class initializes with a file path for a tab-separated values (tsv) file containing information on various cheeses. The data is loaded into a pandas DataFrame, and a TfidfVectorizer is created to transform the cheese descriptions into a matrix of TF-IDF (Term Frequency-Inverse Document Frequency) values.
+
+The `get_recommendations` method takes in user input, number of recommendations, starting index, and a list of words to exclude from the recommendation. If the user does not provide any input or exclusion words, the method generates a random sample of cheese recommendations. If the user provides input, the user's input is transformed into a vector using the same TfidfVectorizer used on the cheese descriptions, and the cosine similarity between the user input vector and the cheese matrix is calculated. The method returns the top recommendations with the highest cosine similarity scores. If exclude words are provided, the method removes any cheeses containing the excluded words from the recommendations.
+
+In the `main` function, the user is prompted to input their cheese preferences and excluded words. If no input or exclusion words are provided, the function generates random cheese recommendations. Otherwise, the function loops through the recommendations and prompts the user if they would like more information on any of the cheeses. The function then prompts the user to see more recommendations or quit. The recommendations are displayed in a tabular format using the `tabulate` library.
+
+## Installation
+
+On MacOs or Linux:
+
+
+    git clone https://github.com/example/cheese-recommender.git
+    cd cheese-recommendation
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+    python3 main.py
+    
+
+
+On Windows: 
+
+    git clone https://github.com/example/cheese-recommender.git
+    cd cheese-recommendation
+    python3 -m venv venv
+    .\venv\Scripts\activate
+    pip install -r requirements.txt
+    python3 main.py
+
+
+## Usage
+
+1. Ensure that cheeses_tab.tsv is in the same directory as main.py
+2. From the command line, navigate to the directory containing main.py
+3. Run the program with:
+
+```
+python3 main.py
+```
+
+The script will prompt the user for input on the qualities they like and do not like in cheese. The user can skip either or both of these prompts by pressing Enter. The script will then recommend cheeses based on the input provided.
+
+If the user wants more information about a specific cheese, they can input 'y' when prompted and the script will provide more information about the cheese.
+
+If the user wants to see more recommendations, they can input 'm' when prompted and the script will provide more recommendations.
+
+## License
+
+This project is licensed under the MIT License. Feel free to use and modify it for your own purposes.
+
