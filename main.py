@@ -29,48 +29,54 @@ class CheeseRecommender:
 if __name__ == '__main__':
     cheese_file = 'cheeses_tab.tsv'
     recommender = CheeseRecommender(cheese_file)
-    user_input = input('What qualities do you like in cheese? (Press Enter to skip) ')
-    exclude_words = input('Enter any qualities you do not want in your cheese (press Enter to skip): ')
-    if exclude_words:
-        exclude_words = exclude_words.strip().split()
-    num_recommendations = 5
-    start_index = 0
-    if not user_input and not exclude_words:
-        print("Here are some random cheeses:")
-        recommendations = recommender.get_recommendations()
-        print(tabulate(recommendations[['cheese', 'origin', 'texture', 'flavor', 'aroma']], headers='keys', tablefmt='psql', showindex=False))
-    else:
-        while True:
-            recommendations = recommender.get_recommendations(user_input=user_input, num_recommendations=num_recommendations, start_index=start_index, exclude_words=exclude_words)
-            recommendations.fillna('', inplace=True)
-            if recommendations.empty:
-                print("No more recommendations.")
-                break
+    
+    while True:
+        os.system('cls' if os.name == 'nt' else 'clear')  # clear screen
+        user_input = input('What qualities do you like in cheese? (Press Enter to skip) ')
+        exclude_words = input('Enter any qualities you do not want in your cheese (press Enter to skip): ')
+        if exclude_words:
+            exclude_words = exclude_words.strip().split()
+        num_recommendations = 5
+        start_index = 0
+        if not user_input and not exclude_words:
+            print("Here are some random cheeses:")
+            recommendations = recommender.get_recommendations()
             print(tabulate(recommendations[['cheese', 'origin', 'texture', 'flavor', 'aroma']], headers='keys', tablefmt='psql', showindex=False))
-            more_info = input('Would you like more information on any of these cheeses? (y/n) ')
-            if more_info.lower() == 'y':
-                for index, row in recommendations.iterrows():
-                    cheese = row['cheese']
-                    origin = row['origin'].strip()
-                    region = row['region'].strip()
-                    kind = row['kind'].strip()
-                    milk = row['milk'].strip()
-                    producer = row['producer'].strip()
-                    description = row['description'].strip()
-                    print(f"\n{cheese}")
-                    if origin:
-                        print(f"Origin: {origin}")
-                    if region:
-                        print(f"Region: {region}")
-                    if kind:
-                        print(f"Kind: {kind}")
-                    if milk:
-                        print(f"Milk: {milk}")
-                    if producer:
-                        print(f"Producer: {producer}")
-                    print(f"Description: {description}")
-            next_recommendations = input('Enter "m" to see more recommendations, or press Enter to quit. ')
-            if next_recommendations.lower() == 'm':
-                start_index += num_recommendations
-            else:
-                break
+        else:
+            while True:
+                os.system('cls' if os.name == 'nt' else 'clear')  # clear screen
+                recommendations = recommender.get_recommendations(user_input=user_input, num_recommendations=num_recommendations, start_index=start_index, exclude_words=exclude_words)
+                recommendations.fillna('', inplace=True)
+                if recommendations.empty:
+                    print("No more recommendations.")
+                    break
+                print(tabulate(recommendations[['cheese', 'origin', 'texture', 'flavor', 'aroma']], headers='keys', tablefmt='psql', showindex=False))
+                more_info = input('Would you like more information on any of these cheeses? (y/n) ')
+                if more_info.lower() == 'y':
+                    for index, row in recommendations.iterrows():
+                        cheese = row['cheese']
+                        origin = row['origin'].strip()
+                        region = row['region'].strip()
+                        kind = row['kind'].strip()
+                        milk = row['milk'].strip()
+                        producer = row['producer'].strip()
+                        description = row['description'].strip()
+                        print(f"\n{cheese}")
+                        if origin:
+                            print(f"Origin: {origin}")
+                        if region:
+                            print(f"Region: {region}")
+                        if kind:
+                            print(f"Kind: {kind}")
+                        if milk:
+                            print(f"Milk: {milk}")
+                        if producer:
+                            print(f"Producer: {producer}")
+                        print(f"Description: {description}")
+                next_recommendations = input('Enter "m" to see more recommendations, "r" to restart, or press Enter to quit. ')
+                if next_recommendations.lower() == 'm':
+                    start_index += num_recommendations
+                elif next_recommendations.lower() == 'r':
+                    break
+                else:
+                    sys.exit(0)
