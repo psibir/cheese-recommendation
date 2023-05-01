@@ -30,7 +30,7 @@ On MacOs or Linux:
     git clone https://github.com/psibir/cheese-recommendation.git
     cd cheese-recommendation
     python3 -m venv .venv
-    source venv/bin/activate
+    source .venv/bin/activate
     pip install -r requirements.txt
     python3 main.py
     
@@ -41,7 +41,7 @@ On Windows:
     git clone https://github.com/psibir/cheese-recommendation.git
     cd cheese-recommendation
     python3 -m venv .venv
-    .\venv\Scripts\activate
+    .\.venv\Scripts\activate
     pip install -r requirements.txt
     python3 main.py
 
